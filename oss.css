@@ -15,7 +15,6 @@ header {
   padding: 20px 35px 20px 28px;
 }
 
-/* Área de marca (logo e texto) */
 .header-brand {
   display: flex;
   align-items: center;
@@ -35,7 +34,6 @@ header {
   color: #ff4900;
 }
 
-/* Header links */
 .header-links {
   display: flex;
   align-items: center;
@@ -52,7 +50,6 @@ header {
   color: #ff4900;
 }
 
-/* Main content area */
 main {
   padding: 16px 18px;
   text-align: left;
@@ -78,11 +75,59 @@ main {
   flex-direction: column;
   position: relative;
   width: 228px;
-  /* Remove o tamanho fixo para que o card envolva apenas a imagem */
   text-decoration: none;
   transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
+/* Tooltip: oculta sem ocupar eventos */
+.product .tooltip {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 4px;
+  transition: opacity 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), visibility 0s linear 0.5s;
+  white-space: normal;
+  max-width: 350px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left;
+  z-index: 9999;
+}
+
+/* Quando ativo, mostra a tooltip e habilita os eventos */
+.product.active .tooltip {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+/* Estilo para o botão "Saber mais" */
+.btn-saber-mais {
+  background-color: #ff4900;
+  border: none;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 10px;
+  display: block;
+}
+
+.btn-saber-mais:focus {
+  outline: none;
+}
+
+/* Efeito de transformação no card */
 .product:hover {
   transform: scale(1.03);
 }
@@ -101,32 +146,6 @@ main {
   border-radius: 5px;
 }
 
-/* Tooltip (descrição) com transição no hover */
-.tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.85);
-  color: #fff;
-  padding: 8px 12px;
-  font-size: 12px;
-  border-radius: 4px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  white-space: normal;
-  max-width: 350px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  text-align: left;
-  z-index: 9999;
-}
-
-.product:hover .tooltip {
-  opacity: 1;
-}
-
 /* Rodapé */
 footer {
   background-color: #1a1a1a;
@@ -138,7 +157,7 @@ footer {
 }
 
 footer a {
-  color: #ccc; /* ou white, se preferir */
+  color: #ccc;
   text-decoration: none;
 }
 
@@ -164,33 +183,34 @@ footer a {
 /* Responsividade até 1440px */
 @media (max-width: 1440px) {
   .product {
-      width: 200px;
+    width: 200px;
   }
   .product-grid {
-      grid-template-columns: repeat(auto-fit, 200px);
-      gap: 16px 27px;
-      padding: 0 10px;
-      align-items: start;
+    grid-template-columns: repeat(auto-fit, 200px);
+    gap: 16px 27px;
+    padding: 0 10px;
+    align-items: start;
   }
 }
 
 /* Responsividade até 768px (mobile) */
 @media (max-width: 768px) {
-  header, .header-links {
-      flex-wrap: wrap;
-      justify-content: center;
-      text-align: center;
+  header,
+  .header-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
   }
   .header-links a {
-      font-size: 14px;
-      margin: 5px;
+    font-size: 14px;
+    margin: 5px;
   }
   .product-grid {
-      grid-template-columns: repeat(auto-fit, 150px);
-      gap: 10px;
-      padding: 0 14px;
+    grid-template-columns: repeat(auto-fit, 150px);
+    gap: 10px;
+    padding: 0 14px;
   }
   .product {
-      width: 150px;
+    width: 150px;
   }
 }
